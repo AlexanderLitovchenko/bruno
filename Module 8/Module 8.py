@@ -39,3 +39,5 @@ students_python_spb = cursor.execute('''SELECT Students.name, Courses.name, Stud
 									AND (Student_courses.student_id = students.id)
 									AND (Students.city = 'Spb') ''').fetchall()
 print(students_python_spb)
+
+conn.close()
