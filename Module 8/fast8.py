@@ -45,8 +45,8 @@ students = [
 ]
 
 courses = [
-{'id':1, 'name':'python', 'data_start':'21.07.21', 'data_end':'21.08.21'},
-{'id':2, 'name':'java', 'data_start':'13.07.21', 'data_end':'16.08.21'}
+{'id':1, 'name':'python', 'time_start':'21.07.21', 'time_end':'21.08.21'},
+{'id':2, 'name':'java', 'time_start':'13.07.21', 'time_end':'16.08.21'}
 ]
 
 student_courses = [
@@ -56,13 +56,14 @@ student_courses = [
 { 'student_id': 4, 'course_id': 2}
 ]
 
+
 Students.insert_many(students).execute()
 Courses.insert_many(courses).execute()
 StudentCourses.insert_many(student_courses).execute()
 
 students_more30 = Students.select().where(Students.age > 30)
 students_python = Students.select().join(StudentCourses).join(Courses).where(Courses.name == 'python')
-students_python_spb = Students.select().join(StudentCourses).join(Courses).where((Courses.name == 'python') and (Students.city == 'Spb'))
+students_python_spb = Students.select().join(StudentCourses).join(Courses).where((Courses.name == 'python') & (Students.city == 'Spb'))
 
 for student in students_more30:
 	print(student.name, end = ' ')
